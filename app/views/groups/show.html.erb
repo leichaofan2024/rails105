@@ -1,3 +1,11 @@
+
+<div class="pull-right">
+  <% if current_user == @group.user %>
+  <%= link_to("编辑", edit_group_path(@group), class: "btn btn-primary ") %>
+  <% end %>
+</div>
+<br/>
+
 <div class="text-center">
   <h2><%= @group.title %></h2>
   <p><%= @group.description %></p>

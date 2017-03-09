@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
+  before_action :havepermit?, only: [:edit, :update, :destroy ]
    def index
      @groups = Group.all
    end
@@ -7,10 +8,8 @@ class GroupsController < ApplicationController
      @group = Group.find(params[:id])
    end
    def edit
-     @group = Group.find(params[:id])
    end
    def update
-     @group = Group.find(params[:id])
       if @group.update(group_params)
      redirect_to groups_path, notice:"Update Success"
      else
@@ -18,7 +17,6 @@ class GroupsController < ApplicationController
      end
    end
    def destroy
-     @group = Group.find(params[:id])
      @group.destroy
      flash[:alert] = "Destroy successfull"
       redirect_to groups_path
@@ -37,7 +35,12 @@ class GroupsController < ApplicationController
    end
 
    private
-
+   def havepermit?
+     @group = Group.find(params[:id])
+     if current_user != @group.user
+       redirect_to groups_path, alert: "你小子没有权限 ！"
+     end
+   end
    def group_params
     params.require(:group).permit(:title,:description)
    end
