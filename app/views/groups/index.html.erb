@@ -10,6 +10,7 @@
           <td>标题</td>
           <td>描述 </td>
           <td>管理</td>
+          <td>所有者</td>
           <td>创建时间</td>
         </tr>
       </thead>
@@ -23,6 +24,7 @@
             <%= link_to("Edit", edit_group_path(group), class: "btn btn-primary") %>
             <%= link_to("Delete", group_path(group), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-danger") %>
           </td>
+          <td><%= group.user.email%></td>
           <td><%= group.created_at %></td>
         </tr>
       <% end %>
