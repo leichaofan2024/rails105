@@ -1,0 +1,33 @@
+<div class="container-fluild">
+  <div class="">
+    <div class="pull-right">
+      <%= link_to("New Group", new_group_path, class: "btn btn-primary") %>
+    </div>
+    <table class="table table-border">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>标题</td>
+          <td>描述 </td>
+          <td>管理</td>
+          <td>创建时间</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
+        <tr>
+          <td>#</td>
+          <td><%= link_to(group.title, group_path(group)) %></td>
+          <td><%= group.description %></td>
+          <td>
+            <%= link_to("Edit", edit_group_path(group), class: "btn btn-primary") %>
+            <%= link_to("Delete", group_path(group), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-danger") %>
+          </td>
+          <td><%= group.created_at %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
