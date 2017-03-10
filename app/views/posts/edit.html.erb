@@ -1,0 +1,7 @@
+<h1>编辑文章</h1>
+<hr>
+<%= simple_form_for [@group,@post] do |f| %>
+<%= f.input :title, input_html: {class: "form-control"} %>
+<%= f.input :content, input_html: {class: "form-control"} %>
+<%= f.submit "Submit", class: "btn btn-primary", data: {disable_with: "submit..."} %>
+<% end %>

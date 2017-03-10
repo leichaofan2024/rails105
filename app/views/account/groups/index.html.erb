@@ -1,0 +1,22 @@
+<h1>参与过的讨论版</h1>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <td>标题</td>
+      <td>描述</td>
+      <td>创建者</td>
+      <td>创建时间</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.each do |group| %>
+    <tr>
+      <td><%= link_to(group.title, group_path(group)) %></td>
+      <td><%= group.description%></td>
+      <td><%= group.user.email%></td>
+      <td><%= group.created_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
