@@ -1,0 +1,7 @@
+<h1>发表文章</h1>
+<br>
+<%= simple_form_for [@group,@post] do |f| %>
+  <%= f.input :title, input_html: { class: "form-control"} %>
+  <%= f.input :content, input_htmle: { class: "form-control"} %>
+  <%= f.submit "Submit", class: "btn btn-primary", data: {disable_with: "submiting..."} %>
+<% end %>
