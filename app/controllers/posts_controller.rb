@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  
   def index
     @group = Group.find(params[:group_id])
     @posts = Group.posts
@@ -11,7 +12,7 @@ class PostsController < ApplicationController
 
 
     @post = Post.find(params[:id])
-    
+
   end
   def create
     @group = Group.find(params[:group_id])
