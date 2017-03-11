@@ -58,6 +58,15 @@ class GroupsController < ApplicationController
      end
      redirect_to group_path(@group)
    end
+   def game
+     @groups = Group.where(:category => "game")
+   end
+   def beauty
+     @groups = Group.where(:category => "beauty")
+   end
+   def art
+     @groups = Group.where(:category => "art")
+   end
    private
    def havepermit?
      @group = Group.find(params[:id])
@@ -66,7 +75,7 @@ class GroupsController < ApplicationController
      end
    end
    def group_params
-    params.require(:group).permit(:title,:description)
+    params.require(:group).permit(:title,:description,:category)
    end
 
 end

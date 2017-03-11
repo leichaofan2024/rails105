@@ -1,5 +1,11 @@
 <div class="container-fluild">
   <div class="">
+    <div class="category">
+
+        <button type="button" name="button"><%= link_to("游戏论坛", game_groups_path)%></button>
+        <button type="button" name="button"><%= link_to("美女", beauty_groups_path) %></button>
+        <button type="button" name="button"><%= link_to("艺术圈", art_groups_path) %></button>
+    </div>
     <div class="pull-right">
       <%= link_to("New Group", new_group_path, class: "btn btn-primary") %>
     </div>
