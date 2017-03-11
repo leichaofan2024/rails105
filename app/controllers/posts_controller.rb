@@ -1,16 +1,11 @@
 class PostsController < ApplicationController
 
-  def index
-    @group = Group.find(params[:group_id])
-    @posts = Group.posts
-  end
+
   def new
     @group = Group.find(params[:group_id])
     @post = Post.new
   end
   def show
-
-
     @post = Post.find(params[:id])
 
   end
@@ -23,7 +18,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.group = @group
     @post.user = current_user
-    if @post.update
+    if @post.update(post_params)
       redirect_to group_path(@group),notie: "更新成功！"
     else
       render :edit
