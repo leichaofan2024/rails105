@@ -2,6 +2,7 @@
 <%= simple_form_for [@quiz,@question] do |f| %>
   <%= f.input :body %>
   <%= f.input :answer %>
+  <%= f.input :is_correct, as: :radio_buttons, :collection => [["正确",true], ["错误",false]]%>
   <%= f.submit "创建题目"%>
 <% end %>
 <table class="table">
@@ -15,11 +16,22 @@
       <tr>
         <td><%= question.id %></td>
         <td><%= question.body %></td>
-        <td><%
-
-
-          %></td>
+        <td>
+          <% answer = @exam.answers.find { |a| a.exam_id == @exam.id && a.question_id == question.id }%>
+          <% if answer.present? %>
+            <% if answer.is_correct? %>
+              正确
+            <% else %>
+              错误
+            <% end %>
+          <% else %>
+            <%= link_to("正确", set_answer_status_path(exam_id: @exam.id, question_id: question.id, is_correct: true),method: :post,class: "btn btn-info") %>
+            <%= link_to("错误", set_answer_status_path(exam_id: @exam.id, question_id: question.id, is_correct: false),method: :post,class: "btn btn-danger") %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= total_count(@answers) %>

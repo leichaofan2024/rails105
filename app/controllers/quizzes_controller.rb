@@ -6,9 +6,16 @@ class QuizzesController < ApplicationController
 
 
   def show
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.includes(:questions).find(params[:id])
+
     @question = Question.new
-    @exam = Exam.new(quiz_id: @quiz.id, user_id: current_user.id )
+   #Text = Exam.create(quiz_id: @quiz.id, user_id: current_user.id )
+
+    #@exam = Text.last
+    @exam = Exam.includes(:answers).where(quiz_id: @quiz.id, user_id: current_user.id )
+          .order("id desc")
+          .first_or_create(quiz_id: @quiz.id)
+    @answers = @exam.answers
   end
 
 

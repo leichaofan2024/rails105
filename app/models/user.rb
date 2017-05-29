@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  has_many :exams
   has_many :groups
   has_many :posts
   has_many :group_relationships
@@ -16,5 +16,5 @@ class User < ApplicationRecord
   end
   def quit!(group)
     participated_groups.delete(group)
-  end 
+  end
 end

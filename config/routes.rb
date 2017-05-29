@@ -20,13 +20,14 @@ Rails.application.routes.draw do
   end
 
   resources :quizzes do
+    member do
+      post :grade_exam
+    end 
     resources :questions
   end
-  resources :answers do
-    member do
-      post :set_as_correct
-      post :set_as_wrong
-    end
-  end
-  
+
+
+
+  post "set_answer_status", :to => "answers#set_answer_status"
+
 end
