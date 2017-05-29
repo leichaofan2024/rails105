@@ -1,0 +1,25 @@
+
+<%= simple_form_for [@quiz,@question] do |f| %>
+  <%= f.input :body %>
+  <%= f.input :answer %>
+  <%= f.submit "创建题目"%>
+<% end %>
+<table class="table">
+  <thead>
+      <th>题号</th>
+      <th>题目</th>
+      <th>判断</th>
+  </thead>
+  <tbody>
+    <% Question.all.each do |question| %>
+      <tr>
+        <td><%= question.id %></td>
+        <td><%= question.body %></td>
+        <td><%
+
+
+          %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
