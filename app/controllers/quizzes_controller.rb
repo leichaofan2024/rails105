@@ -8,7 +8,8 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    @question = Question.new 
+    @question = Question.new
+    # @exam = Exam.new(quiz_id: @quiz.id, user_id: current_user.id )
   end
 
 
