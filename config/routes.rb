@@ -21,5 +21,12 @@ Rails.application.routes.draw do
 
   resources :quizzes do
     resources :questions
-  end 
+  end
+  resources :answers do
+    member do
+      post :set_as_correct
+      post :set_as_wrong
+    end
+  end
+  
 end
